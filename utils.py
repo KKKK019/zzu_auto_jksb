@@ -129,7 +129,9 @@ def send_message(message: str):
 
             smtp_obj = smtplib.SMTP_SSL(mail_host, 465)
             smtp_obj.login(mail_user, mail_pass)
-            smtp_obj.sendmail(sender, receivers, message_mime.as_string())
+            # smtp_obj.sendmail(sender, receivers, message_mime.as_string())
+            send_obj.send_message(message_mime)
+            
             logger.info("已使用"+send_type+"模式发送消息“"+message+"”")
         except smtplib.SMTPException:
             logger.error('无法发送邮件')
